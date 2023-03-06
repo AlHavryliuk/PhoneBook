@@ -12,8 +12,10 @@ export const CustomHeader = styled.header`
 export const HomeLink = styled(NavLink)`
   color: #fff;
   transition: all 0.3s;
-  font-size: 28px;
+
+  font-size: 36px;
   text-decoration: none;
+  /* text-decoration: underline; */
   &:hover {
     color: black;
   }

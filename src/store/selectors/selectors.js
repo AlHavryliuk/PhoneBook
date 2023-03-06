@@ -9,7 +9,7 @@ const select = {
   changeModeId: state => state.contacts.changeMode.id,
   changeMode: state => state.contacts.changeMode,
   token: state => state.auth.token,
-  authComlete: state => state.auth.authComlete,
+  authComplete: state => state.auth.authComplete,
   userName: state => state.auth.userName,
   userEmail: state => state.auth.userEmail,
 };
@@ -18,7 +18,6 @@ const reselect = {
   contactsByFilter: createSelector(
     [select.contacts, select.filter, select.changeModeIsActive], // Arguments
     (contacts, filter) => {
-      
       if (filter !== '') {
         return contacts.filter(
           contact => contact.name.toLowerCase().trim().includes(filter) // Return filter array
@@ -30,15 +29,14 @@ const reselect = {
 
   // Check authentication completed
 
-  authenticationComplete: createSelector(
-    [select.token, select.authComlete],
-    (token, authComlete) => {
-      if (token === null) {
-        return authComlete === false;
-      }
-      return (authComlete = true);
+  authenticationComplete: createSelector([select.token], token => {
+    if (token === null || token === '') {
+      select.authComplete = false;
+      return select.authComplete;
     }
-  ),
+    select.authComplete = true;
+    return select.authComplete;
+  }),
 };
 
 export { select, reselect };

@@ -48,7 +48,7 @@ const authSlice = createSlice({
         state.token = null;
         state.userName = null;
         state.userEmail = null;
-        state.authComplete = false;
+        // state.authComplete = false;
         state.error = null;
         token.unSet();
       })
